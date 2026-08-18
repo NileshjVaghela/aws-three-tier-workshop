@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SVKM NMIKS Global University - Lets rock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="nav-brand">
+                <img src="https://cloudkida.com/wp-content/uploads/2024/05/cloudkida-logo-1.png" alt="CloudKida" class="nav-logo">
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#labs" class="nav-link">Labs</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-particles"></div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">🚀 Deployed via CI/CD Pipeline - Live Update!</span>
+                <h1 class="hero-title">SVKM NMIMS Student Community Day <span class="gradient-text">Hands-on Skills</span></h1>
+                <p class="hero-subtitle">✅ This page was automatically deployed via AWS CodePipeline from GitHub! Last updated: 14-Aug-2026 3:24 PM IST</p>
+                <div class="hero-buttons">
+                    <a href="#labs" class="btn btn-primary">Explore Labs</a>
+                    <a href="#about" class="btn btn-outline">Learn More</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="studentCount">1098</span>
+                        <span class="stat-label">Students Trusted</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Cloud Labs</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Availability</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Us</span>
+                <h2 class="section-title">CloudKida Labs for Everyone</h2>
+                <p class="section-subtitle">One-stop, cost effective solution for almost all Computer Labs</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Self-Service Portal</h3>
+                    <p>No need for any supporting staff. Users can manage and access labs independently.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Accessible Anywhere</h3>
+                    <p>Access labs from anywhere in the world with just a browser and internet connection.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>No Hardware Required</h3>
+                    <p>No on-premise hardware to maintain. Everything runs on the cloud.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h3>Massive Capacity</h3>
+                    <p>Can accommodate as many candidates concurrently without performance degradation.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>Easily Customizable</h3>
+                    <p>Labs are easily customizable and can be updated to meet changing requirements.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Pay-as-you-Go</h3>
+                    <p>Cost is only attached to provisioned resources and duration. No upfront investment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Services</span>
+                <h2 class="section-title">Experiential Learning As A Service</h2>
+                <p class="section-subtitle">We provide platforms for all types of hands-on labs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon linux">
+                        <i class="fab fa-linux"></i>
+                    </div>
+                    <h3>Linux Platform</h3>
+                    <p>Linux based platform for all Linux computers, Containers, Clusters and Hybrid labs.</p>
+                    <a href="#" class="service-link">Know More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon windows">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <h3>Windows Platform</h3>
+                    <p>Windows based platform for all windows single, multi server or hybrid platform labs.</p>
+                    <a href="#" class="service-link">Know More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon cloud">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Labs</h3>
+                    <p>We provide almost all cloud Labs. We are continuously adding and upgrading them.</p>
+                    <a href="#" class="service-link">Know More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon custom">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3>Custom Labs</h3>
+                    <p>We are happy to take any challenge with custom design labs required by customer.</p>
+                    <a href="#" class="service-link">Know More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Labs/Portfolio Section -->
+    <section id="labs" class="labs section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Our Labs</span>
+                <h2 class="section-title">Popular Hands-on Labs</h2>
+                <p class="section-subtitle">Practice with real cloud environments</p>
+            </div>
+            <div class="labs-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="aws">AWS</button>
+                <button class="filter-btn" data-filter="linux">Linux</button>
+                <button class="filter-btn" data-filter="docker">Docker</button>
+            </div>
+            <div class="labs-grid">
+                <div class="lab-card" data-category="aws">
+                    <div class="lab-image aws-gradient">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="lab-content">
+                        <span class="lab-tag">AWS</span>
+                        <h4>EC2 Instance Management</h4>
+                        <p>Launch, configure and manage EC2 instances in AWS cloud.</p>
+                        <div class="lab-meta">
+                            <span><i class="far fa-clock"></i> 45 mins</span>
+                            <span><i class="fas fa-signal"></i> Beginner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lab-card" data-category="aws">
+                    <div class="lab-image s3-gradient">
+                        <i class="fas fa-bucket"></i>
+                    </div>
+                    <div class="lab-content">
+                        <span class="lab-tag">AWS</span>
+                        <h4>S3 Static Website Hosting</h4>
+                        <p>Host a static website using Amazon S3 and CloudFront.</p>
+                        <div class="lab-meta">
+                            <span><i class="far fa-clock"></i> 30 mins</span>
+                            <span><i class="fas fa-signal"></i> Beginner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lab-card" data-category="linux">
+                    <div class="lab-image linux-gradient">
+                        <i class="fab fa-linux"></i>
+                    </div>
+                    <div class="lab-content">
+                        <span class="lab-tag">Linux</span>
+                        <h4>Linux Administration</h4>
+                        <p>Learn essential Linux system administration commands and tools.</p>
+                        <div class="lab-meta">
+                            <span><i class="far fa-clock"></i> 60 mins</span>
+                            <span><i class="fas fa-signal"></i> Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lab-card" data-category="docker">
+                    <div class="lab-image docker-gradient">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <div class="lab-content">
+                        <span class="lab-tag">Docker</span>
+                        <h4>Container Orchestration</h4>
+                        <p>Build, run and manage Docker containers and compose applications.</p>
+                        <div class="lab-meta">
+                            <span><i class="far fa-clock"></i> 90 mins</span>
+                            <span><i class="fas fa-signal"></i> Advanced</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lab-card" data-category="aws">
+                    <div class="lab-image vpc-gradient">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="lab-content">
+                        <span class="lab-tag">AWS</span>
+                        <h4>VPC Networking</h4>
+                        <p>Design and configure Virtual Private Cloud networking in AWS.</p>
+                        <div class="lab-meta">
+                            <span><i class="far fa-clock"></i> 75 mins</span>
+                            <span><i class="fas fa-signal"></i> Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lab-card" data-category="docker">
+                    <div class="lab-image k8s-gradient">
+                        <i class="fas fa-dharmachakra"></i>
+                    </div>
+                    <div class="lab-content">
+                        <span class="lab-tag">Docker</span>
+                        <h4>Kubernetes Basics</h4>
+                        <p>Deploy and manage containerized applications with Kubernetes.</p>
+                        <div class="lab-meta">
+                            <span><i class="far fa-clock"></i> 120 mins</span>
+                            <span><i class="fas fa-signal"></i> Advanced</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Priorities Section -->
+    <section class="priorities section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Who We Serve</span>
+                <h2 class="section-title">Our Key Priorities</h2>
+            </div>
+            <div class="priorities-grid">
+                <div class="priority-card">
+                    <div class="priority-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Individuals</h3>
+                    <p>Self-paced learning with hands-on practice environments for personal skill development.</p>
+                </div>
+                <div class="priority-card">
+                    <div class="priority-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Corporates</h3>
+                    <p>Enterprise training solutions with custom labs for workforce upskilling programs.</p>
+                </div>
+                <div class="priority-card">
+                    <div class="priority-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Universities</h3>
+                    <p>Academic lab infrastructure for computer science and IT curriculum delivery.</p>
+                </div>
+                <div class="priority-card">
+                    <div class="priority-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Students</h3>
+                    <p>Affordable access to real cloud environments for practical exam preparation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Creators</span>
+                <h2 class="section-title">Meet The Team</h2>
+                <p class="section-subtitle">Passionate experts building the future of experiential learning</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>Nilesh Vaghela</h4>
+                    <span class="team-role">Co-Founder / CEO</span>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>Kishan Khatrani</h4>
+                    <span class="team-role">Co-Founder / CTO</span>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>Dimple Vaghela</h4>
+                    <span class="team-role">Co-Founder / CFO</span>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>Kartik Thummar</h4>
+                    <span class="team-role">Developer Lead</span>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Contact Us</h2>
+                <p class="section-subtitle">Have questions? We'd love to hear from you.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Ahmedabad, Gujarat, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>inquiry@cloudkida.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>75748 77958</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>10 AM – 5 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
+                        <div id="formMessage" class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="https://cloudkida.com/wp-content/uploads/2024/05/cloudkida-logo-1.png" alt="CloudKida" class="footer-logo">
+                    <p>At CloudKida, we simplify learning by providing ready-to-use cloud labs where you can practice coding and emerging tech skills, anytime, anywhere.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61559076008199"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/CloudKida9"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/cloudkida-pvt-ltd/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com/cloudkida"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@cloudkida"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#labs">Labs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Platforms</h4>
+                    <ul>
+                        <li><a href="#">Linux Labs</a></li>
+                        <li><a href="#">Windows Labs</a></li>
+                        <li><a href="#">Cloud Labs</a></li>
+                        <li><a href="#">Custom Labs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CloudKida Pvt Ltd. All rights reserved.</p>
+                <p>Proudly powered by CloudKida</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- API Status Indicator (connects to backend) -->
+    <div class="api-status" id="apiStatus">
+        <span class="status-dot"></span>
+        <span class="status-text">Connecting...</span>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+<!-- auto-trigger test Friday 14 August 2026 03:22:10 PM IST -->
