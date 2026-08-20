@@ -456,7 +456,8 @@ ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 BUCKET_NAME="workshop-secure-${ACCOUNT_ID}"
 
 # Create bucket
-aws s3api create-bucket --bucket $BUCKET_NAME --region ap-south-1
+aws s3api create-bucket --bucket $BUCKET_NAME --region ap-south-1 \
+  --create-bucket-configuration LocationConstraint=ap-south-1
 
 # Block all public access
 aws s3api put-public-access-block --bucket $BUCKET_NAME \
