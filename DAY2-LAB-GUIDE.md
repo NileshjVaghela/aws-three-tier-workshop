@@ -860,8 +860,11 @@ done
 DETECTOR_ID=$(aws guardduty list-detectors --query 'DetectorIds[0]' --output text --region us-east-1)
 aws guardduty delete-detector --detector-id $DETECTOR_ID --region us-east-1
 
-# 4. Delete Config
+# 4. Delete Config (wait between calls - Config API has low rate limits)
 aws configservice stop-configuration-recorder --configuration-recorder-name default --region us-east-1
+sleep 5
+aws configservice delete-delivery-channel --delivery-channel-name default --region us-east-1
+sleep 5
 aws configservice delete-configuration-recorder --configuration-recorder-name default --region us-east-1
 
 # 5. Delete CloudWatch Alarms
