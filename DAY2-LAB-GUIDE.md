@@ -268,6 +268,9 @@ VPC Endpoints allow ECS tasks to access AWS services without going through the N
 
 **CLI:**
 ```bash
+# Get VPC ID
+VPC_ID=$(aws ec2 describe-vpcs --filters "Name=tag:Name,Values=workshop-vpc" --query 'Vpcs[0].VpcId' --output text --region us-east-1)
+
 # Create security group for VPC endpoints
 VPCE_SG=$(aws ec2 create-security-group --group-name workshop-vpce-sg \
   --description "VPC Endpoints - Allow HTTPS from VPC" \
@@ -577,6 +580,10 @@ aws wafv2 create-web-acl \
 # Associate with ALB
 WAF_ARN=$(aws wafv2 list-web-acls --scope REGIONAL --query 'WebACLs[?Name==`workshop-waf`].ARN' --output text --region us-east-1)
 
+# Wait for WAF to propagate (takes ~10-15 seconds)
+echo "Waiting for WAF Web ACL to propagate..."
+sleep 15
+
 aws wafv2 associate-web-acl --web-acl-arn $WAF_ARN --resource-arn $ALB_ARN --region us-east-1
 ```
 
@@ -680,6 +687,9 @@ aws guardduty create-detector --enable --region us-east-1
 
 **CLI:**
 ```bash
+# Get Account ID
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+
 # Create Config role
 cat > /tmp/config-trust.json << 'EOF'
 {
@@ -697,6 +707,36 @@ aws iam create-role --role-name workshop-config-role \
 
 aws iam attach-role-policy --role-name workshop-config-role \
   --policy-arn arn:aws:iam::aws:policy/service-role/AWS_ConfigRole
+
+# Add S3 delivery permissions to the role
+cat > /tmp/config-s3-policy.json << EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["s3:PutObject", "s3:GetBucketAcl"],
+      "Resource": [
+        "arn:aws:s3:::${BUCKET_NAME}",
+        "arn:aws:s3:::${BUCKET_NAME}/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sns:Publish",
+      "Resource": "${TOPIC_ARN}"
+    }
+  ]
+}
+EOF
+
+aws iam put-role-policy --role-name workshop-config-role \
+  --policy-name ConfigDeliveryPolicy \
+  --policy-document file:///tmp/config-s3-policy.json
+
+# Wait for IAM role propagation
+echo "Waiting for IAM role to propagate..."
+sleep 15
 
 # Create Config recorder
 aws configservice put-configuration-recorder \
