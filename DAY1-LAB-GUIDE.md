@@ -527,8 +527,11 @@ aws ecs create-cluster --cluster-name workshop-cluster \
 1. Go to **IAM** → **Roles** → **Create role**
 2. Trusted entity: AWS service → **Elastic Container Service Task**
 3. Attach policy: `AmazonECSTaskExecutionRolePolicy`
-4. Role name: `workshop-ecs-execution-role`
-5. Click **Create role**
+4. **Expand "Set permissions boundary"** → Select `workshop-permission-boundary`
+5. Role name: `workshop-ecs-execution-role` or `ecsTaskExecutionRole`
+6. Click **Create role**
+
+> ⚠️ **Important:** You MUST set the permission boundary when creating roles. Without it, the role creation will be denied. The ECS Console may offer to auto-create `ecsTaskExecutionRole` — this will work as long as you set the permission boundary.
 
 **CLI:**
 ```bash
@@ -545,7 +548,8 @@ cat > /tmp/ecs-trust-policy.json << 'EOF'
 EOF
 
 aws iam create-role --role-name workshop-ecs-execution-role \
-  --assume-role-policy-document file:///tmp/ecs-trust-policy.json
+  --assume-role-policy-document file:///tmp/ecs-trust-policy.json \
+  --permissions-boundary arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):policy/workshop-permission-boundary
 
 aws iam attach-role-policy --role-name workshop-ecs-execution-role \
   --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
@@ -553,9 +557,30 @@ aws iam attach-role-policy --role-name workshop-ecs-execution-role \
 
 ### Step 3.5: Create ECS Task Role
 
+**Console:**
+1. Go to **IAM** → **Roles** → **Create role**
+2. Trusted entity: AWS service → **Elastic Container Service Task**
+3. Skip attaching managed policies (we'll add inline policy)
+4. **Expand "Set permissions boundary"** → Select `workshop-permission-boundary`
+5. Role name: `workshop-ecs-task-role` or `ecsTaskRole`
+6. Click **Create role**
+7. Open the role → **Add permissions** → **Create inline policy** → JSON:
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": ["logs:CreateLogGroup","logs:CreateLogStream","logs:PutLogEvents"],
+    "Resource": "*"
+  }]
+}
+```
+
+**CLI:**
 ```bash
 aws iam create-role --role-name workshop-ecs-task-role \
-  --assume-role-policy-document file:///tmp/ecs-trust-policy.json
+  --assume-role-policy-document file:///tmp/ecs-trust-policy.json \
+  --permissions-boundary arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):policy/workshop-permission-boundary
 
 # Add CloudWatch Logs permission
 cat > /tmp/task-role-policy.json << 'EOF'
