@@ -467,22 +467,40 @@ aws s3api put-bucket-encryption --bucket $BUCKET_NAME \
     "Rules": [{"ApplyServerSideEncryptionByDefault": {"SSEAlgorithm": "aws:kms", "KMSMasterKeyID": "'$KMS_KEY_ID'"}, "BucketKeyEnabled": true}]
   }'
 
-# Bucket policy: deny unencrypted uploads
+# Bucket policy: allow Config delivery + deny unencrypted uploads from others
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+
 cat > /tmp/bucket-policy.json << EOF
 {
   "Version": "2012-10-17",
-  "Statement": [{
-    "Sid": "DenyUnencryptedUploads",
-    "Effect": "Deny",
-    "Principal": "*",
-    "Action": "s3:PutObject",
-    "Resource": "arn:aws:s3:::${BUCKET_NAME}/*",
-    "Condition": {
-      "StringNotEquals": {
-        "s3:x-amz-server-side-encryption": "aws:kms"
+  "Statement": [
+    {
+      "Sid": "AWSConfigBucketPermissionsCheck",
+      "Effect": "Allow",
+      "Principal": {"Service": "config.amazonaws.com"},
+      "Action": "s3:GetBucketAcl",
+      "Resource": "arn:aws:s3:::${BUCKET_NAME}"
+    },
+    {
+      "Sid": "AWSConfigBucketExistenceCheck",
+      "Effect": "Allow",
+      "Principal": {"Service": "config.amazonaws.com"},
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::${BUCKET_NAME}"
+    },
+    {
+      "Sid": "AWSConfigBucketDelivery",
+      "Effect": "Allow",
+      "Principal": {"Service": "config.amazonaws.com"},
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::${BUCKET_NAME}/AWSLogs/${ACCOUNT_ID}/Config/*",
+      "Condition": {
+        "StringEquals": {
+          "s3:x-amz-acl": "bucket-owner-full-control"
+        }
       }
     }
-  }]
+  ]
 }
 EOF
 
