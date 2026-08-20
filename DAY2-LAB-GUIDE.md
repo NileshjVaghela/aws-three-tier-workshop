@@ -396,7 +396,8 @@ cat > /tmp/flow-logs-trust.json << 'EOF'
 EOF
 
 aws iam create-role --role-name workshop-flow-logs-role \
-  --assume-role-policy-document file:///tmp/flow-logs-trust.json
+  --assume-role-policy-document file:///tmp/flow-logs-trust.json \
+  --permissions-boundary arn:aws:iam::${ACCOUNT_ID}:policy/workshop-permission-boundary
 
 cat > /tmp/flow-logs-policy.json << 'EOF'
 {
@@ -721,7 +722,8 @@ cat > /tmp/config-trust.json << 'EOF'
 EOF
 
 aws iam create-role --role-name workshop-config-role \
-  --assume-role-policy-document file:///tmp/config-trust.json
+  --assume-role-policy-document file:///tmp/config-trust.json \
+  --permissions-boundary arn:aws:iam::${ACCOUNT_ID}:policy/workshop-permission-boundary
 
 aws iam attach-role-policy --role-name workshop-config-role \
   --policy-arn arn:aws:iam::aws:policy/service-role/AWS_ConfigRole
