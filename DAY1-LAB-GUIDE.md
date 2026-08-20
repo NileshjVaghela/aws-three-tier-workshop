@@ -675,6 +675,12 @@ aws ecs register-task-definition --cli-input-json file:///tmp/task-definition.js
 ### Step 3.8: Create Security Groups for ECS
 
 ```bash
+# Get VPC ID (if not already set)
+VPC_ID=$(aws ec2 describe-vpcs --filters "Name=tag:Name,Values=workshop-vpc" --query 'Vpcs[0].VpcId' --output text --region us-east-1)
+
+# Get RDS Security Group ID (created in Step 2.2)
+RDS_SG=$(aws ec2 describe-security-groups --filters "Name=group-name,Values=workshop-rds-sg" --query 'SecurityGroups[0].GroupId' --output text --region us-east-1)
+
 # ECS Security Group (allows traffic from ALB only)
 ECS_SG=$(aws ec2 create-security-group --group-name workshop-ecs-sg \
   --description "ECS Tasks - Allow from ALB only" \
@@ -694,6 +700,10 @@ aws ec2 authorize-security-group-ingress --group-id $RDS_SG \
 ### Step 4.1: Create ALB Security Group
 
 ```bash
+# Get VPC ID and ECS SG (if not already set)
+VPC_ID=$(aws ec2 describe-vpcs --filters "Name=tag:Name,Values=workshop-vpc" --query 'Vpcs[0].VpcId' --output text --region us-east-1)
+ECS_SG=$(aws ec2 describe-security-groups --filters "Name=group-name,Values=workshop-ecs-sg" --query 'SecurityGroups[0].GroupId' --output text --region us-east-1)
+
 ALB_SG=$(aws ec2 create-security-group --group-name workshop-alb-sg \
   --description "ALB - Allow HTTP from internet" \
   --vpc-id $VPC_ID --query 'GroupId' --output text --region us-east-1)
