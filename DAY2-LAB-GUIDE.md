@@ -164,7 +164,7 @@ cat > /tmp/task-definition-v2.json << EOF
   "taskRoleArn": "arn:aws:iam::${ACCOUNT_ID}:role/workshop-ecs-task-role",
   "containerDefinitions": [{
     "name": "app",
-    "image": "${ACCOUNT_ID}.dkr.ecr.ap-south-1.amazonaws.com/workshop-app:latest",
+    "image": "public.ecr.aws/p3w5g2v4/workshop-app:latest",
     "portMappings": [{"containerPort": 5000, "protocol": "tcp"}],
     "environment": [
       {"name": "DB_HOST", "value": "${RDS_ENDPOINT}"},
