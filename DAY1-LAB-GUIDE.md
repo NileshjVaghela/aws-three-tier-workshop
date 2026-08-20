@@ -739,6 +739,12 @@ aws ec2 authorize-security-group-ingress --group-id $ECS_SG \
 
 **CLI:**
 ```bash
+# Get public subnet IDs
+PUB_SUBNET_1=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=workshop-public-1" --query 'Subnets[0].SubnetId' --output text --region us-east-1)
+PUB_SUBNET_2=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=workshop-public-2" --query 'Subnets[0].SubnetId' --output text --region us-east-1)
+VPC_ID=$(aws ec2 describe-vpcs --filters "Name=tag:Name,Values=workshop-vpc" --query 'Vpcs[0].VpcId' --output text --region us-east-1)
+ALB_SG=$(aws ec2 describe-security-groups --filters "Name=group-name,Values=workshop-alb-sg" --query 'SecurityGroups[0].GroupId' --output text --region us-east-1)
+
 # Create ALB
 ALB_ARN=$(aws elbv2 create-load-balancer --name workshop-alb \
   --subnets $PUB_SUBNET_1 $PUB_SUBNET_2 \
