@@ -600,9 +600,9 @@ aws wafv2 create-web-acl \
 # Associate with ALB
 WAF_ARN=$(aws wafv2 list-web-acls --scope REGIONAL --query 'WebACLs[?Name==`workshop-waf`].ARN' --output text --region ap-south-1)
 
-# Wait for WAF to propagate (takes ~10-15 seconds)
+# Wait for WAF to propagate (takes ~30-60 seconds)
 echo "Waiting for WAF Web ACL to propagate..."
-sleep 15
+sleep 60
 
 aws wafv2 associate-web-acl --web-acl-arn $WAF_ARN --resource-arn $ALB_ARN --region ap-south-1
 ```
