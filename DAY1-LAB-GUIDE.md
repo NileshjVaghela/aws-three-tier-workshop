@@ -757,7 +757,32 @@ aws elbv2 create-listener --load-balancer-arn $ALB_ARN \
 
 ### Step 4.3: Create ECS Service
 
-**Console:**
+> ⚠️ **IMPORTANT: Use CLI (CloudShell) for this step.** The ECS Console uses CloudFormation internally to create services, which may fail due to permissions. Use the CLI method below instead — it works reliably.
+
+**CLI (Recommended — use CloudShell):**
+```bash
+# Get subnet IDs
+APP_SUBNET_1=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=workshop-private-app-1" --query 'Subnets[0].SubnetId' --output text --region us-east-1)
+APP_SUBNET_2=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=workshop-private-app-2" --query 'Subnets[0].SubnetId' --output text --region us-east-1)
+
+# Get security group ID
+ECS_SG=$(aws ec2 describe-security-groups --filters "Name=group-name,Values=workshop-ecs-sg" --query 'SecurityGroups[0].GroupId' --output text --region us-east-1)
+
+# Get target group ARN
+TG_ARN=$(aws elbv2 describe-target-groups --names workshop-tg --query 'TargetGroups[0].TargetGroupArn' --output text --region us-east-1)
+
+# Create the service
+aws ecs create-service --cluster workshop-cluster \
+  --service-name workshop-service \
+  --task-definition workshop-app \
+  --desired-count 1 \
+  --launch-type FARGATE \
+  --network-configuration "awsvpcConfiguration={subnets=[$APP_SUBNET_1,$APP_SUBNET_2],securityGroups=[$ECS_SG],assignPublicIp=DISABLED}" \
+  --load-balancers "targetGroupArn=$TG_ARN,containerName=app,containerPort=5000" \
+  --region us-east-1
+```
+
+**Console (Alternative — only if CLI is not preferred):**
 1. Go to **ECS** → **Clusters** → `workshop-cluster` → **Services** → **Create**
 2. Configuration:
    - Launch type: Fargate
@@ -775,21 +800,6 @@ aws elbv2 create-listener --load-balancer-arn $ALB_ARN \
      - Container: app:5000
      - Target group: workshop-tg
 3. Click **Create**
-
-**CLI:**
-```bash
-APP_SUBNET_1=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=workshop-private-app-1" --query 'Subnets[0].SubnetId' --output text --region us-east-1)
-APP_SUBNET_2=$(aws ec2 describe-subnets --filters "Name=tag:Name,Values=workshop-private-app-2" --query 'Subnets[0].SubnetId' --output text --region us-east-1)
-
-aws ecs create-service --cluster workshop-cluster \
-  --service-name workshop-service \
-  --task-definition workshop-app \
-  --desired-count 1 \
-  --launch-type FARGATE \
-  --network-configuration "awsvpcConfiguration={subnets=[$APP_SUBNET_1,$APP_SUBNET_2],securityGroups=[$ECS_SG],assignPublicIp=DISABLED}" \
-  --load-balancers "targetGroupArn=$TG_ARN,containerName=app,containerPort=5000" \
-  --region us-east-1
-```
 
 ---
 
